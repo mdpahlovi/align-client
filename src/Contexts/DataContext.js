@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import axios from "axios";
+import { getWeather } from "../Apis/weather";
 
 export const LoadData = createContext();
 
@@ -7,6 +8,7 @@ const DataContext = ({ children }) => {
     const [allCountries, setAllCountries] = useState([]);
     const [matchCountries, setMatchCountries] = useState([]);
     const [searchValue, setSearchValue] = useState(null);
+    const [weatherData, setWeaterData] = useState({});
 
     const getMatchCountries = (value, allCountries) => {
         setSearchValue(value);
@@ -21,11 +23,11 @@ const DataContext = ({ children }) => {
 
     const getWeatherData = (value, allCountries) => {
         if (value.latlng && !allCountries) {
-            console.log(value);
+            getWeather(value.latlng[0], value.latlng[0]).then((data) => setWeaterData(data));
         } else {
-            const searchCountry = allCountries.find((country) => country.name.common === value);
+            const searchCountry = allCountries.find((country) => country.name.common.toLowerCase() === value.toLowerCase());
             setMatchCountries([]);
-            console.log(searchCountry);
+            getWeather(searchCountry.latlng[0], searchCountry.latlng[0]).then((data) => setWeaterData(data));
         }
     };
 
@@ -45,7 +47,18 @@ const DataContext = ({ children }) => {
             setTheme("light");
         }
     }, []);
-    const data = { allCountries, searchValue, setSearchValue, matchCountries, setMatchCountries, getMatchCountries, getWeatherData, theme, setTheme };
+    const data = {
+        allCountries,
+        searchValue,
+        setSearchValue,
+        matchCountries,
+        setMatchCountries,
+        getMatchCountries,
+        getWeatherData,
+        weatherData,
+        theme,
+        setTheme,
+    };
 
     return <LoadData.Provider value={data}>{children}</LoadData.Provider>;
 };

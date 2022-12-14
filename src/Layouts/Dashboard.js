@@ -72,7 +72,7 @@ const Dashboard = () => {
                         </NavLink>
                     </div>
                 </div>
-                <div className="-mx-6 flex items-center justify-between border-t border-base-content/50 px-6 pt-4">
+                <div className="-mx-6 flex items-center justify-between border-t-2 border-base-content/50 px-6 pt-4">
                     <button className="group button opacity-70 ">
                         <HiOutlineLogout className="text-2xl" />
                         <span>Logout</span>
@@ -80,7 +80,7 @@ const Dashboard = () => {
                 </div>
             </aside>
             <div className="ml-auto mb-6 lg:w-[75%] xl:w-[80%] 2xl:w-[85%]">
-                <div className="sticky top-0 h-16 flex items-center justify-end space-x-4 px-6 2xl:container bg-base-content/5">
+                <div className="sticky top-0 h-16 flex items-center justify-end space-x-4 px-6 2xl:container bg-base-content/5 backdrop-blur-2xl">
                     <Link to="/" className="fixed left-4">
                         <img src={Logo} className="w-24" alt="" />
                     </Link>
