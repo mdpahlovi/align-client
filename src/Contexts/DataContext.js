@@ -8,7 +8,7 @@ const DataContext = ({ children }) => {
     const [allCountries, setAllCountries] = useState([]);
     const [matchCountries, setMatchCountries] = useState([]);
     const [searchValue, setSearchValue] = useState(null);
-    const [weatherData, setWeaterData] = useState({});
+    const [weatherData, setWeatherData] = useState({});
 
     const getMatchCountries = (value, allCountries) => {
         setSearchValue(value);
@@ -23,11 +23,11 @@ const DataContext = ({ children }) => {
 
     const getWeatherData = (value, allCountries) => {
         if (value.latlng && !allCountries) {
-            getWeather(value.latlng[0], value.latlng[0]).then((data) => setWeaterData(data));
+            getWeather(value.latlng[0], value.latlng[0]).then((data) => setWeatherData({ data, name: value.name }));
         } else {
             const searchCountry = allCountries.find((country) => country.name.common.toLowerCase() === value.toLowerCase());
             setMatchCountries([]);
-            getWeather(searchCountry.latlng[0], searchCountry.latlng[0]).then((data) => setWeaterData(data));
+            getWeather(searchCountry.latlng[0], searchCountry.latlng[0]).then((data) => setWeatherData({ data, name: searchCountry.name.common }));
         }
     };
 
