@@ -29,7 +29,7 @@ module.exports = {
                     "base-content": "#151719",
                     neutral: "#151719",
                     "neutral-content": "#ffffff",
-                    primary: "#F48E00",
+                    primary: "#B42F7E",
                 },
                 dark: {
                     ...require("daisyui/src/colors/themes")["[data-theme=dark]"],
@@ -37,7 +37,7 @@ module.exports = {
                     "base-content": "#ffffff",
                     neutral: "#ffffff",
                     "neutral-content": "#151719",
-                    primary: "#F48E00",
+                    primary: "#B42F7E",
                 },
             },
             "light",

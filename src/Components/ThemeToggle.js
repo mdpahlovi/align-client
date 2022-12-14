@@ -1,16 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { RiSunFill, RiMoonFill } from "react-icons/ri";
+import { LoadData } from "../Contexts/DataContext";
 
 function ThemeToggle() {
-    const [theme, setTheme] = useState(null);
-
-    useEffect(() => {
-        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-            setTheme("dark");
-        } else {
-            setTheme("light");
-        }
-    }, []);
+    const { theme, setTheme } = useContext(LoadData);
 
     useEffect(() => {
         if (theme === "light") {
