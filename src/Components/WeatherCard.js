@@ -5,7 +5,7 @@ const WeatherCard = ({ current, day, timezone, name }) => {
     const { dt, weather, wind_speed, visibility, humidity } = current;
     const { min, max } = day.temp;
     return (
-        <div className="flex flex-col p-6 gap-4">
+        <div className="w-full h-full flex flex-col justify-center p-6 gap-4">
             <div className="space-y-2">
                 <div className="font-bold text-4xl">{name}</div>
                 <div className="text-base-content/50">{formatToLocalTime(dt, timezone, "cccc, dd LLL yyyy")}</div>
