@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getAllTask, setTask } from "../Apis/tasks";
+import { deleteTask, getAllTask, getTaskByEmail, setTask } from "../Apis/tasks";
 import InputFields from "../Components/InputFields";
 import TaskCard from "../Components/TaskCard";
 
@@ -7,6 +7,7 @@ const TodoApp = () => {
     const [img, setImg] = useState(null);
     const [tasks, setTasks] = useState([]);
     const [refresh, setRefresh] = useState(false);
+    const [defaultValue, setDefaultValue] = useState({});
 
     useEffect(() => {
         getAllTask()
@@ -27,18 +28,34 @@ const TodoApp = () => {
                 alert(message);
                 setRefresh(!refresh);
                 setImg("");
+                setDefaultValue({});
                 event.target.reset();
             })
             .catch((error) => console.error(error));
     };
 
+    const handelDeleteTask = (email) => {
+        deleteTask(email)
+            .then((message) => {
+                console.log(message);
+                setRefresh(!refresh);
+            })
+            .catch((error) => console.log(error));
+    };
+
+    const handelEditTask = (email) => {
+        getTaskByEmail(email)
+            .then((data) => setDefaultValue(data))
+            .catch((error) => console.log(error));
+    };
+
     return (
         <div className="md:-mt-10 min-h-screen flex justify-center items-center">
             <div className="max-w-3xl mx-auto p-6 grid md:grid-cols-2 gap-6">
-                <InputFields handelAddTask={handelAddTask} img={img} setImg={setImg} />
+                <InputFields handelAddTask={handelAddTask} img={img} setImg={setImg} defaultValue={defaultValue} />
                 <div className="h-[374px] overflow-auto space-y-4">
                     {tasks.map((task, index) => (
-                        <TaskCard key={index} task={task} />
+                        <TaskCard key={index} task={task} handelDeleteTask={handelDeleteTask} handelEditTask={handelEditTask} />
                     ))}
                 </div>
             </div>

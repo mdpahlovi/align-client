@@ -2,7 +2,7 @@ import React from "react";
 import { FaUserEdit } from "react-icons/fa";
 import { RiDeleteBin5Fill } from "react-icons/ri";
 
-const TaskCard = ({ task }) => {
+const TaskCard = ({ task, handelDeleteTask, handelEditTask }) => {
     const { user_img, user_name, user_email, status, submission_date } = task;
 
     return (
@@ -18,10 +18,10 @@ const TaskCard = ({ task }) => {
                     </div>
                 </div>
                 <div className="flex gap-4">
-                    <div className="icon-button flex justify-center items-center">
+                    <div onClick={() => handelEditTask(user_email)} className="icon-button flex justify-center items-center">
                         <FaUserEdit />
                     </div>
-                    <div className="icon-button flex justify-center items-center">
+                    <div onClick={() => handelDeleteTask(user_email)} className="icon-button flex justify-center items-center">
                         <RiDeleteBin5Fill />
                     </div>
                 </div>
