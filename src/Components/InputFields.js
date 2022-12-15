@@ -1,40 +1,56 @@
 import React from "react";
 import { MdOutlineAddPhotoAlternate, MdAlternateEmail, MdOutlineDateRange } from "react-icons/md";
 import { RiUserAddLine } from "react-icons/ri";
+import { getImgUrl } from "../Apis/getImgUrl";
 
-const InputFields = () => {
+const InputFields = ({ handelAddTask, img, setImg }) => {
+    const getUrl = (event) => {
+        const img_file = event.target.files[0];
+        getImgUrl(img_file)
+            .then(({ data }) => setImg(data.display_url))
+            .catch((error) => console.log(error));
+    };
+
     return (
-        <form className="space-y-4">
+        <form onSubmit={(event) => handelAddTask(img, event)} className="space-y-4">
             <div className="flex flex-col">
                 <div className="flex items-center space-x-4">
                     <img
                         className="object-cover w-14 h-14 rounded-full"
-                        src="https://cdn.pixabay.com/photo/2016/04/22/04/57/graduation-1345143__340.png"
+                        src={img ? img : "https://cdn.pixabay.com/photo/2016/04/22/04/57/graduation-1345143__340.png"}
                         alt=""
                     />
                     <input
                         type="file"
+                        accept="image/*"
+                        name="img"
+                        onChange={getUrl}
                         className="block w-full text-sm text-base-content/50 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-base-content file:text-base-100"
                     />
                 </div>
                 <div className="divider divider-vertical">OR</div>
                 <div className="relative flex items-center text-xl">
                     <MdOutlineAddPhotoAlternate className="absolute w-max h-max left-4 flex  items-center border-r border-base-content/50 pr-3 cursor-pointer" />
-                    <input type="search" placeholder="Photo Url" className="outline-none input-field pl-14 pr-4 focus:border-primary" />
+                    <input type="search" name="img_url" placeholder="Photo Url" className="outline-none input-field pl-14 pr-4 focus:border-primary" />
                 </div>
             </div>
             <div className="relative flex items-center text-xl">
                 <RiUserAddLine className="absolute w-max h-max left-4 flex  items-center border-r border-base-content/50 pr-3 cursor-pointer" />
-                <input type="search" placeholder="User Name" className="outline-none input-field pl-14 pr-4 focus:border-primary" />
+                <input type="text" name="user_name" placeholder="User Name" className="outline-none input-field pl-14 pr-4 focus:border-primary" />
             </div>
             <div className="relative flex items-center text-xl">
                 <MdAlternateEmail className="absolute w-max h-max left-4 flex  items-center border-r border-base-content/50 pr-3 cursor-pointer" />
-                <input type="search" placeholder="User Email" className="outline-none input-field pl-14 pr-4 focus:border-primary" />
+                <input type="text" name="user_email" placeholder="User Email" className="outline-none input-field pl-14 pr-4 focus:border-primary" />
             </div>
             <div className="flex flex-col xs:flex-row gap-4">
                 <div className="relative flex items-center text-xl">
                     <MdOutlineDateRange className="absolute w-max h-max left-4 flex  items-center border-r border-base-content/50 pr-3 cursor-pointer" />
-                    <input type="text" name="task_details" placeholder="Task Details" className="outline-none input-field pl-14 pr-4 focus:border-primary" />
+                    <input
+                        type="text"
+                        name="task_details_url"
+                        placeholder="Task Details"
+                        className="outline-none input-field pl-14 pr-4 focus:border-primary"
+                    />
                 </div>
                 <div className="relative flex items-center text-xl">
                     <MdOutlineDateRange className="absolute w-max h-max left-4 flex  items-center border-r border-base-content/50 pr-3 cursor-pointer" />
