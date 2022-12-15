@@ -7,7 +7,7 @@
         @apply relative flex items-center space-x-4 px-4 py-3;
     }
     .active-button {
-        @apply rounded-xl bg-gradient-to-r from-[#E5527E] to-[#660280] font-bold text-white;
+        @apply rounded-xl bg-gradient-to-r from-[#E5527E] to-[#660280] text-white;
     }
     .icon-button {
         @apply h-10 w-10 rounded-xl border border-base-content/50 hover:border-primary 

@@ -4,7 +4,7 @@ import ThemeToggle from "../Components/ThemeToggle";
 import { CgMenuRight, CgClose } from "react-icons/cg";
 import { FaSearchLocation } from "react-icons/fa";
 import { HiOutlineLogout } from "react-icons/hi";
-import { IoIosArrowDropdownCircle } from "react-icons/io";
+import { IoIosArrowDropdownCircle, IoMdArrowDropdownCircle } from "react-icons/io";
 import { Menu, Transition } from "@headlessui/react";
 import Logo from "../Assets/logo.png";
 import { LoadData } from "../Contexts/DataContext";
@@ -113,7 +113,7 @@ const Dashboard = () => {
                             {matchCountries.length === 0 ? (
                                 ""
                             ) : (
-                                <div className="absolute top-[3.35rem] min-w-full bg-base-content/10 backdrop-blur-2xl p-1 rounded-xl">
+                                <div className="absolute top-[3.35rem] min-w-full max-h-[11.8rem] overflow-auto bg-base-content/10 backdrop-blur-2xl p-1 rounded-xl text-sm">
                                     {matchCountries.map((country, index) => (
                                         <div
                                             key={index}
@@ -134,8 +134,9 @@ const Dashboard = () => {
                         <div className="text-right">
                             <Menu as="div" className="relative inline-block text-left">
                                 <div>
-                                    <Menu.Button className="inline-flex justify-center input-field  backdrop-blur-2xl text-base-content/50 hover:border-primary px-4">
+                                    <Menu.Button className="inline-flex justify-center items-center gap-2 input-field backdrop-blur-2xl text-base-content/50 hover:border-primary px-4">
                                         Select Countries
+                                        <IoMdArrowDropdownCircle />
                                     </Menu.Button>
                                 </div>
                                 <Transition
@@ -147,11 +148,20 @@ const Dashboard = () => {
                                     leaveFrom="transform opacity-100 scale-100"
                                     leaveTo="transform opacity-0 scale-95"
                                 >
-                                    <Menu.Items className="absolute right-0 mt-3 origin-top-right rounded-xl bg-base-content/10 backdrop-blur-2xl">
+                                    <Menu.Items className="absolute max-h-52 overflow-auto right-0 mt-3 origin-top-right rounded-xl bg-base-content/10 backdrop-blur-2xl">
                                         <div className="p-1">
-                                            {[...Array(4)].map((name, index) => (
+                                            {allCountries.map((country, index) => (
                                                 <Menu.Item key={index}>
-                                                    {({ active }) => <button className={`${active ? "active-button" : ""} button py-2`}>Mohadesh Name</button>}
+                                                    {({ active }) => (
+                                                        <button
+                                                            onClick={() => {
+                                                                getWeatherData({ name: country.name.common, latlng: country.latlng }, 0);
+                                                            }}
+                                                            className={`${active ? "active-button" : ""} w-full button py-2`}
+                                                        >
+                                                            {country.name.common}
+                                                        </button>
+                                                    )}
                                                 </Menu.Item>
                                             ))}
                                         </div>
