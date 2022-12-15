@@ -31,7 +31,8 @@ const TempChart = ({ day }) => {
     };
 
     return (
-        <div className="w-full h-full flex justify-center items-center pb-6">
+        <div className="col-span-full p-6 bg-neutral rounded-xl space-y-4">
+            <h1 className="text-4xl font-bold">How's the temperature today</h1>
             <Line data={data} options={options} style={{ width: "100%" }}></Line>
         </div>
     );

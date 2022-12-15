@@ -6,13 +6,13 @@ const TaskCard = ({ task, handelDeleteTask, handelEditTask }) => {
     const { user_img, user_name, user_email, status, submission_date } = task;
 
     return (
-        <div className="bg-base-content/10 rounded-xl p-4 flex gap-2.5">
+        <div className="bg-neutral rounded-xl border border-accent p-4 flex gap-2.5">
             <img className="hidden xs:block object-cover w-12 h-12 rounded-full" src={user_img} alt="" />
             <div className="-my-1 w-full flex justify-between items-center">
                 <div>
                     <h3 className="text-lg font-bold">{user_name}</h3>
-                    <h3 className="-mt-1 max-w-[142px] overflow-hidden text-ellipsis text-sm opacity-50">{user_email}</h3>
-                    <div className="flex gap-4 text-sm opacity-50">
+                    <h3 className="-mt-1 max-w-[142px] overflow-hidden text-ellipsis text-sm text-accent">{user_email}</h3>
+                    <div className="flex gap-4 text-sm text-accent">
                         <h3>{status ? "Done" : "Not Done"}</h3>
                         <h3>{submission_date}</h3>
                     </div>

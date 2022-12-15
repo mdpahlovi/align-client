@@ -14,7 +14,7 @@ const InputFields = ({ handelAddTask, img, setImg, defaultValue }) => {
     };
 
     return (
-        <form onSubmit={(event) => handelAddTask(img, event)} className="space-y-4">
+        <form onSubmit={(event) => handelAddTask(img, event)} className="md:w-1/2 xs:min-w-[348px] space-y-4">
             <div className="flex flex-col">
                 <div className="flex items-center space-x-4">
                     <img
@@ -27,12 +27,12 @@ const InputFields = ({ handelAddTask, img, setImg, defaultValue }) => {
                         accept="image/*"
                         name="img"
                         onChange={getUrl}
-                        className="block w-full text-sm text-base-content/50 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-base-content file:text-base-100"
+                        className="block w-full text-sm text-accent file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-base-content file:text-base-100"
                     />
                 </div>
                 <div className="divider divider-vertical">OR</div>
                 <div className="relative flex items-center text-xl">
-                    <MdOutlineAddPhotoAlternate className="absolute w-max h-max left-4 flex  items-center border-r border-base-content/50 pr-3 cursor-pointer" />
+                    <MdOutlineAddPhotoAlternate className="absolute w-max h-max left-4 flex  items-center border-r border-accent pr-3 cursor-pointer" />
                     <input
                         type="search"
                         name="img_url"
@@ -43,7 +43,7 @@ const InputFields = ({ handelAddTask, img, setImg, defaultValue }) => {
                 </div>
             </div>
             <div className="relative flex items-center text-xl">
-                <RiUserAddLine className="absolute w-max h-max left-4 flex  items-center border-r border-base-content/50 pr-3 cursor-pointer" />
+                <RiUserAddLine className="absolute w-max h-max left-4 flex items-center border-r border-accent pr-3 cursor-pointer" />
                 <input
                     type="text"
                     name="user_name"
@@ -53,7 +53,7 @@ const InputFields = ({ handelAddTask, img, setImg, defaultValue }) => {
                 />
             </div>
             <div className="relative flex items-center text-xl">
-                <MdAlternateEmail className="absolute w-max h-max left-4 flex  items-center border-r border-base-content/50 pr-3 cursor-pointer" />
+                <MdAlternateEmail className="absolute w-max h-max left-4 flex  items-center border-r border-accent pr-3 cursor-pointer" />
                 <input
                     type="text"
                     name="user_email"
@@ -64,7 +64,7 @@ const InputFields = ({ handelAddTask, img, setImg, defaultValue }) => {
             </div>
             <div className="flex flex-col xs:flex-row gap-4">
                 <div className="relative flex items-center text-xl">
-                    <MdOutlineDateRange className="absolute w-max h-max left-4 flex  items-center border-r border-base-content/50 pr-3 cursor-pointer" />
+                    <MdOutlineDateRange className="absolute w-max h-max left-4 flex  items-center border-r border-accent pr-3 cursor-pointer" />
                     <input
                         type="text"
                         name="task_details_url"
@@ -73,7 +73,7 @@ const InputFields = ({ handelAddTask, img, setImg, defaultValue }) => {
                     />
                 </div>
                 <div className="relative flex items-center text-xl">
-                    <MdOutlineDateRange className="absolute w-max h-max left-4 flex  items-center border-r border-base-content/50 pr-3 cursor-pointer" />
+                    <MdOutlineDateRange className="absolute w-max h-max left-4 flex  items-center border-r border-accent pr-3 cursor-pointer" />
                     <input
                         type="text"
                         name="submission_date"

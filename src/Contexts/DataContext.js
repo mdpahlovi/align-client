@@ -47,6 +47,7 @@ const DataContext = ({ children }) => {
             setTheme("light");
         }
     }, []);
+
     const data = {
         allCountries,
         searchValue,

@@ -10,10 +10,13 @@
         @apply rounded-xl bg-gradient-to-r from-[#E5527E] to-[#660280] text-white;
     }
     .icon-button {
-        @apply h-10 w-10 rounded-xl border border-base-content/50 hover:border-primary 
-        bg-base-content/10 cursor-pointer;
+        @apply h-10 w-10 rounded-xl border border-accent hover:border-primary 
+        bg-secondary cursor-pointer;
     }
     .input-field {
-        @apply w-full rounded-xl border border-base-content/50 py-2.5 text-sm bg-base-content/10;
+        @apply w-full rounded-xl border border-accent py-2.5 text-sm bg-neutral;
+    }
+    .gradient-text {
+        @apply text-transparent bg-clip-text bg-gradient-to-r from-[#E5527E] to-[#660280];
     }
 }

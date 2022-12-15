@@ -18,9 +18,9 @@ const Dashboard = () => {
     return (
         <>
             <aside
-                className={`fixed h-screen z-10 flex flex-col justify-between px-6 pb-3 transition duration-300 ${
+                className={`fixed h-screen flex flex-col justify-between px-6 pb-3 transition duration-300 ${
                     open ? "-translate-x-full" : "translate-x-0"
-                } lg:translate-x-0 w-64 lg:w-[25%] xl:w-[20%] 2xl:w-[15%] bg-base-content/5 backdrop-blur-2xl`}
+                } lg:translate-x-0 w-64 lg:w-[25%] xl:w-[20%] 2xl:w-[15%] bg-neutral`}
             >
                 <div>
                     <div className="-mx-6 px-6 py-4 flex justify-center">
@@ -72,7 +72,7 @@ const Dashboard = () => {
                         </NavLink>
                     </div>
                 </div>
-                <div className="-mx-6 flex items-center justify-between border-t-2 border-base-content/50 px-6 pt-4">
+                <div className="-mx-6 flex items-center justify-between border-t-2 border-accent px-6 pt-4">
                     <button className="group button opacity-70 ">
                         <HiOutlineLogout className="text-2xl" />
                         <span>Logout</span>
@@ -80,8 +80,8 @@ const Dashboard = () => {
                 </div>
             </aside>
             <div className="ml-auto mb-6 lg:w-[75%] xl:w-[80%] 2xl:w-[85%]">
-                <div className="sticky top-0 h-16 flex items-center justify-end space-x-4 px-6 2xl:container bg-base-content/5 backdrop-blur-2xl">
-                    <Link to="/" className="fixed left-4">
+                <div className="sticky z-20 top-0 h-16 flex items-center justify-end space-x-4 px-6 2xl:container bg-neutral">
+                    <Link to="/" className="fixed left-4 lg:hidden">
                         <img src={Logo} className="w-24" alt="" />
                     </Link>
                     {/*Get Countries */}
@@ -96,7 +96,7 @@ const Dashboard = () => {
                                 onClick={() => {
                                     getWeatherData(searchValue, allCountries);
                                 }}
-                                className="absolute w-max h-max left-4 flex  items-center border-r border-base-content/50 pr-3 cursor-pointer"
+                                className="absolute w-max h-max left-4 flex items-center border-r border-accent pr-3 cursor-pointer"
                             />
                             <input
                                 type="search"
@@ -108,12 +108,12 @@ const Dashboard = () => {
                                     }
                                 }}
                                 placeholder="Search Countries"
-                                className="outline-none input-field pl-14 pr-4 focus:border-primary"
+                                className="outline-none input-field bg-secondary pl-14 pr-4 focus:border-primary"
                             />
                             {matchCountries.length === 0 ? (
                                 ""
                             ) : (
-                                <div className="absolute top-[3.35rem] min-w-full max-h-[11.8rem] overflow-auto bg-base-content/10 backdrop-blur-2xl p-1 rounded-xl text-sm">
+                                <div className="absolute top-[3.35rem] min-w-full max-h-[11.8rem] overflow-auto bg-secondary p-1 rounded-xl text-sm">
                                     {matchCountries.map((country, index) => (
                                         <div
                                             key={index}
@@ -134,7 +134,7 @@ const Dashboard = () => {
                         <div className="text-right">
                             <Menu as="div" className="relative inline-block text-left">
                                 <div>
-                                    <Menu.Button className="inline-flex justify-center items-center gap-2 input-field backdrop-blur-2xl text-base-content/50 hover:border-primary px-4">
+                                    <Menu.Button className="inline-flex justify-center items-center gap-2 input-field bg-secondary text-accent hover:border-primary px-4">
                                         Select Countries
                                         <IoMdArrowDropdownCircle />
                                     </Menu.Button>
@@ -148,7 +148,7 @@ const Dashboard = () => {
                                     leaveFrom="transform opacity-100 scale-100"
                                     leaveTo="transform opacity-0 scale-95"
                                 >
-                                    <Menu.Items className="absolute max-h-52 overflow-auto right-0 mt-3 origin-top-right rounded-xl bg-base-content/10 backdrop-blur-2xl">
+                                    <Menu.Items className="absolute max-h-52 overflow-auto right-0 mt-3 origin-top-right rounded-xl bg-secondary">
                                         <div className="p-1">
                                             {allCountries.map((country, index) => (
                                                 <Menu.Item key={index}>

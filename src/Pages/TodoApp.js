@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import { deleteTask, getAllTask, getTaskByEmail, setTask } from "../Apis/tasks";
 import InputFields from "../Components/InputFields";
 import TaskCard from "../Components/TaskCard";
@@ -6,13 +7,17 @@ import TaskCard from "../Components/TaskCard";
 const TodoApp = () => {
     const [img, setImg] = useState(null);
     const [tasks, setTasks] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [refresh, setRefresh] = useState(false);
     const [defaultValue, setDefaultValue] = useState({});
 
     useEffect(() => {
         getAllTask()
-            .then((data) => setTasks(data))
-            .catch((error) => console.log(error));
+            .then((data) => {
+                setTasks(data);
+                setLoading(false);
+            })
+            .catch((error) => toast.error(error.message));
     }, [refresh]);
 
     const handelAddTask = (img, event) => {
@@ -25,22 +30,22 @@ const TodoApp = () => {
         const user = { user_img, user_name, user_email, task_details_url, submission_date };
         setTask(user)
             .then((message) => {
-                alert(message);
+                toast.success(message);
                 setRefresh(!refresh);
                 setImg("");
                 setDefaultValue({});
                 event.target.reset();
             })
-            .catch((error) => console.error(error));
+            .catch((error) => toast.error(error.message));
     };
 
     const handelDeleteTask = (email) => {
         deleteTask(email)
             .then((message) => {
-                console.log(message);
+                toast.success(message);
                 setRefresh(!refresh);
             })
-            .catch((error) => console.log(error));
+            .catch((error) => toast.error(error.message));
     };
 
     const handelEditTask = (email) => {
@@ -51,12 +56,12 @@ const TodoApp = () => {
 
     return (
         <div className="md:-mt-10 min-h-screen flex justify-center items-center">
-            <div className="max-w-3xl mx-auto p-6 grid md:grid-cols-2 gap-6">
+            <div className="max-w-md md:max-w-3xl mx-auto p-6 flex flex-col md:flex-row justify-center gap-6">
                 <InputFields handelAddTask={handelAddTask} img={img} setImg={setImg} defaultValue={defaultValue} />
-                <div className="h-[374px] overflow-auto space-y-4">
-                    {tasks.map((task, index) => (
-                        <TaskCard key={index} task={task} handelDeleteTask={handelDeleteTask} handelEditTask={handelEditTask} />
-                    ))}
+                <div className={`md:w-1/2 h-[374px] overflow-auto space-y-4 ${loading ? "animate-pulse" : ""}`}>
+                    {loading
+                        ? [...Array(3)].map((name, index) => <div key={index} className="w-[348px] h-[88px] bg-neutral border border-accent rounded-xl"></div>)
+                        : tasks.map((task, index) => <TaskCard key={index} task={task} handelDeleteTask={handelDeleteTask} handelEditTask={handelEditTask} />)}
                 </div>
             </div>
         </div>
